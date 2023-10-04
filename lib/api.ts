@@ -1,7 +1,7 @@
 import axios from "axios";
-const baseUrl = "http://localhost:4000";
-
-export async function create(url) {
+const baseUrl = import.meta.env.VITE_BASE_URL;
+console.log(baseUrl);
+export async function create(url: string) {
     try {
         const response = await axios({
             url: baseUrl,
@@ -9,7 +9,7 @@ export async function create(url) {
             data: { url: url }
         });
         return response.data;
-    } catch (error) {
+    } catch (error: any) {
         if (error.response) {
             return error.response.data;
         }
@@ -17,8 +17,9 @@ export async function create(url) {
     }
 }
 
-export async function fetch(url) {
+export async function fetch(url: string) {
     try {
+        console.log("baseurl", baseUrl)
         const response = await axios({
             url: `${baseUrl}/${url}`,
             method: 'GET',
@@ -28,7 +29,7 @@ export async function fetch(url) {
         });
         return response.data;
 
-    } catch (error) {
+    } catch (error: any) {
         if (error.response) {
             return error.response.data;
         }
