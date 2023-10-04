@@ -1,10 +1,29 @@
+import { GitHub, LinkedIn } from '@mui/icons-material';
+import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
 
 const Footer = () => {
+  const date = new Date;
   return (
-  <footer>
-    Footer
-  </footer>
+    <footer style={{ backgroundColor: '#111111', paddingBlock: '0.5rem' }}>
+      <Container maxWidth="md">
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Box>
+            <Typography variant='h6'>
+              {`@${date.getFullYear()} Gyanendra Kumar`}
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <a href="https://github.com/gauravghost">
+              <GitHub sx={{ color: 'white'}} />
+            </a>
+            <a href="https://linkedin.com/in/gyanendrak874">
+              <LinkedIn sx={{color: 'white'}} />
+            </a>
+          </Box>
+        </Box>
+      </Container>
+    </footer>
   )
 }
 

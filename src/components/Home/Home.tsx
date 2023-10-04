@@ -2,21 +2,41 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material"
 import { useState } from "react"
 import QSnackbar from "../snackbar/snackbar";
+import { create } from "../../../lib/api";
 
 const Home = () => {
   const [url, setUrl] = useState("");
   const [open, setOpen] = useState(false);
   const [bar, setBar] = useState({});
-  
-  const submitHandler = () => {
-    setOpen(true);
-    setBar({text: 'Success', variant: 'success'})
-    console.log(typeof url);
+
+  const submitHandler = async () => {
+    if (!url) {
+      setOpen(true);
+      setBar({ text: 'Please Enter valid url', variant: 'error' });
+      return;
+    }
+    const response = await create(url);
+    console.log(response);
+
+    if (response.success == true) {
+      setOpen(true);
+      setBar({ text: response.message, variant: 'success' })
+    }
+    else if (response.success == false) {
+      setOpen(true);
+      setBar({text: `${response.message}, Please Enter Valid URL`, variant: 'error'})
+    }
+    else {
+      console.log("server is connecting");
+      setOpen(true);
+      setBar({ text: 'Server is Connecting! please try again', variant: 'error' });
+    }
   }
+
   return (
     <div>
       <Container maxWidth="md">
-        <Box sx={{ height: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 15 }}>
+        <Box sx={{ height: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 15 }}>
           <Box textAlign="center">
             <Typography variant="h3">
               URL Shortner
@@ -66,7 +86,7 @@ const Home = () => {
             </Button>
           </Box>
         </Box>
-        <QSnackbar open={open} setOpen={setOpen} bar={bar}/>
+        <QSnackbar open={open} setOpen={setOpen} bar={bar} />
       </Container>
     </div>
   )

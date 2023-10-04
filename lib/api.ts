@@ -13,7 +13,7 @@ export async function create(url: string) {
         if (error.response) {
             return error.response.data;
         }
-        return error.message;
+        return error;
     }
 }
 
