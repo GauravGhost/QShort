@@ -1,10 +1,16 @@
 
 import { Box, Button, Container, TextField, Typography } from "@mui/material"
 import { useState } from "react"
+import QSnackbar from "../snackbar/snackbar";
 
 const Home = () => {
   const [url, setUrl] = useState("");
+  const [open, setOpen] = useState(false);
+  const [bar, setBar] = useState({});
+  
   const submitHandler = () => {
+    setOpen(true);
+    setBar({text: 'Success', variant: 'success'})
     console.log(typeof url);
   }
   return (
@@ -60,7 +66,7 @@ const Home = () => {
             </Button>
           </Box>
         </Box>
-
+        <QSnackbar open={open} setOpen={setOpen} bar={bar}/>
       </Container>
     </div>
   )
