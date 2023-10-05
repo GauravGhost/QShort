@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Container } from '@mui/material';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav>
@@ -13,10 +14,12 @@ const Navbar = () => {
           <AppBar position="static" color='transparent'>
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                QShort
+                <Link to="/" style={{ paddingLeft: 13, textDecoration: 'none', color: 'white' }}>
+                  QShort
+                </Link>
               </Typography>
               <Button>
-                <a href="https://github.com/gauravghost" target='_blank'>
+                <a href="https://github.com/GauravGhost/QShort" target='_blank'>
                   <GitHubIcon sx={{ color: 'white' }} />
                 </a>
               </Button>

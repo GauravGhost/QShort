@@ -1,13 +1,14 @@
-
 import { Box, Button, Container, TextField, Typography } from "@mui/material"
 import { useState } from "react"
 import QSnackbar from "../snackbar/snackbar";
 import { create } from "../../../lib/api";
+import LinkSection from "../LinkSection/LinkSection";
 
 const Home = () => {
   const [url, setUrl] = useState("");
   const [open, setOpen] = useState(false);
   const [bar, setBar] = useState({});
+  const [shortUrl, setShortUrl] = useState('');
 
   const submitHandler = async () => {
     if (!url) {
@@ -15,19 +16,19 @@ const Home = () => {
       setBar({ text: 'Please Enter valid url', variant: 'error' });
       return;
     }
+
     const response = await create(url);
-    console.log(response);
 
     if (response.success == true) {
       setOpen(true);
-      setBar({ text: response.message, variant: 'success' })
+      setBar({ text: response.message, variant: 'success' });
+      setShortUrl(response.data);
     }
     else if (response.success == false) {
       setOpen(true);
-      setBar({text: `${response.message}, Please Enter Valid URL`, variant: 'error'})
+      setBar({ text: `${response.message}, Please Enter Valid URL`, variant: 'error' })
     }
     else {
-      console.log("server is connecting");
       setOpen(true);
       setBar({ text: 'Server is Connecting! please try again', variant: 'error' });
     }
@@ -36,8 +37,8 @@ const Home = () => {
   return (
     <div>
       <Container maxWidth="md">
-        <Box sx={{ height: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 15 }}>
-          <Box textAlign="center">
+        <Box sx={{ height: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <Box textAlign="center" marginBottom="60px">
             <Typography variant="h3">
               URL Shortner
             </Typography>
@@ -85,6 +86,9 @@ const Home = () => {
               Generate
             </Button>
           </Box>
+          {shortUrl && <Box marginTop="10px">
+            <LinkSection shortUrl={shortUrl} setBar={setBar} setOpen={setOpen} />
+          </Box>}
         </Box>
         <QSnackbar open={open} setOpen={setOpen} bar={bar} />
       </Container>
@@ -93,3 +97,4 @@ const Home = () => {
 }
 
 export default Home
+
