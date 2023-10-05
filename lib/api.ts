@@ -17,7 +17,7 @@ export async function create(url: string) {
     }
 }
 
-export async function fetch(url: string) {
+export async function fetch(url: string | undefined) {
     try {
         console.log("baseurl", baseUrl)
         const response = await axios({

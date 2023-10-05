@@ -1,6 +1,5 @@
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import { Box, Container, Typography } from '@mui/material'
-import React from 'react'
 
 const Footer = () => {
   const date = new Date;
@@ -14,10 +13,10 @@ const Footer = () => {
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <a href="https://github.com/gauravghost">
+            <a target='_blank' href="https://github.com/gauravghost">
               <GitHub sx={{ color: 'white'}} />
             </a>
-            <a href="https://linkedin.com/in/gyanendrak874">
+            <a target='_blank' href="https://linkedin.com/in/gyanendrak874">
               <LinkedIn sx={{color: 'white'}} />
             </a>
           </Box>
