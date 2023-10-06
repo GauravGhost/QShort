@@ -4,8 +4,18 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { Alert } from '@mui/material';
 
-export default function QSnackbar({ open, setOpen, bar }) {
+type LinkSectionProps = {
+    open: boolean;
+    bar: {
+        text?: string;
+        variant?: 'success' | 'info' | 'warning' | 'error';
+    };
+    setOpen: (value: boolean) => void;
+};
+
+export default function QSnackbar({ open, setOpen, bar }: LinkSectionProps) {
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        event.preventDefault();
         if (reason === 'clickaway') {
             return;
         }

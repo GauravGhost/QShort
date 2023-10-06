@@ -5,10 +5,10 @@ import { create } from "../../../lib/api";
 import LinkSection from "../LinkSection/LinkSection";
 
 const Home = () => {
-  const [url, setUrl] = useState("");
-  const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false);
   const [bar, setBar] = useState({});
-  const [shortUrl, setShortUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState<string>('');
 
   const submitHandler = async () => {
     if (!url) {

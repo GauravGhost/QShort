@@ -1,11 +1,17 @@
-import { Box, Card, CardContent, Container, Typography } from '@mui/material'
+import { Box, Card, Typography } from '@mui/material'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import copy from 'copy-to-clipboard';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
-const LinkSection = ({ shortUrl, setBar, setOpen }) => {
+type LinkSectionProps = {
+    shortUrl: string;
+    setBar: (value: { text: string; variant: string }) => void;
+    setOpen: (value: boolean) => void;
+};
+
+const LinkSection = ({ shortUrl, setBar, setOpen }: LinkSectionProps) => {
     const [url, setUrl] = useState('');
     const [copied, setCopied] = useState(false);
     useEffect(() => {
@@ -30,7 +36,7 @@ const LinkSection = ({ shortUrl, setBar, setOpen }) => {
                         !copied
                             ?
                             <ContentCopyIcon sx={{ cursor: 'pointer' }} onClick={copyHandler} />
-                            : <TaskAltIcon sx={{color: 'green'}} />
+                            : <TaskAltIcon sx={{ color: 'green' }} />
                     }
                 </Box>
             </Card>

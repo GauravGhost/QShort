@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { fetch } from "../../../lib/api";
 import QSnackbar from "../snackbar/snackbar";
 import { Typography } from "@mui/material";
@@ -18,10 +18,10 @@ const Redirect = () => {
 
   const fetchOriginalUrl = async () => {
     const response = await fetch(url);
-    if (response.success == true) {
+    if (response.success) {
       window.location.href = response.data;
     }
-    else if (response.success == false) {
+    else if (!response.success) {
       setOpen(true);
       setBar({ text: "Please Enter Correct Short url", variant: 'error' })
       setTimeout(() => {
