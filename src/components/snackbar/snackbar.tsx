@@ -14,12 +14,10 @@ type LinkSectionProps = {
 };
 
 export default function QSnackbar({ open, setOpen, bar }: LinkSectionProps) {
-    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-        event.preventDefault();
+    const handleClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
     };
 

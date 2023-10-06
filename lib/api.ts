@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
-console.log(baseUrl);
+
 export async function create(url: string) {
     try {
         const response = await axios({
@@ -19,7 +19,6 @@ export async function create(url: string) {
 
 export async function fetch(url: string | undefined) {
     try {
-        console.log("baseurl", baseUrl)
         const response = await axios({
             url: `${baseUrl}/${url}`,
             method: 'GET',

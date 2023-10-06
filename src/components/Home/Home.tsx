@@ -19,12 +19,12 @@ const Home = () => {
 
     const response = await create(url);
 
-    if (response.success == true) {
+    if (response.success) {
       setOpen(true);
       setBar({ text: response.message, variant: 'success' });
       setShortUrl(response.data);
     }
-    else if (response.success == false) {
+    else if (!response.success) {
       setOpen(true);
       setBar({ text: `${response.message}, Please Enter Valid URL`, variant: 'error' })
     }

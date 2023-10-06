@@ -28,7 +28,7 @@ const LinkSection = ({ shortUrl, setBar, setOpen }: LinkSectionProps) => {
             <Card>
                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', p: 2 }}>
                     <Typography variant="subtitle1">
-                        <Link to={`/${shortUrl}`} target='_blank'>
+                        <Link to={`/${shortUrl}`} target="_blank">
                             {`${url}${shortUrl}`}
                         </Link>
                     </Typography>
