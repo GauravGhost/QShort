@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl = "https://qshortb.zesp.in";
 
 export async function create(url: string) {
     try {
