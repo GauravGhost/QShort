@@ -16,6 +16,7 @@ const Home = () => {
     if (!url) {
       setOpen(true);
       setBar({ text: 'Please Enter valid url', variant: 'error' });
+      setLoader(false);
       return;
     }
 
@@ -80,6 +81,7 @@ const Home = () => {
                 color: 'white',
                 bgcolor: '#1d1d1d',
                 height: '45px',
+                width: '110px',
                 borderTopLeftRadius: '0',
                 borderBottomLeftRadius: '0',
                 '&:hover': { bgcolor: '#1d1d1da4' }
