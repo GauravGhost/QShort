@@ -1,4 +1,4 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material"
+import { Box, Button, CircularProgress, Container, TextField, Typography } from "@mui/material"
 import { useState } from "react"
 import QSnackbar from "../snackbar/snackbar";
 import { create } from "../../../lib/api";
@@ -9,8 +9,10 @@ const Home = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [bar, setBar] = useState({});
   const [shortUrl, setShortUrl] = useState<string>('');
+  const [loader, setLoader] = useState<boolean>(false);
 
   const submitHandler = async () => {
+    setLoader(true);
     if (!url) {
       setOpen(true);
       setBar({ text: 'Please Enter valid url', variant: 'error' });
@@ -32,6 +34,7 @@ const Home = () => {
       setOpen(true);
       setBar({ text: 'Server is Connecting! please try again', variant: 'error' });
     }
+    setLoader(false);
   }
 
   return (
@@ -83,7 +86,7 @@ const Home = () => {
               }}
               onClick={submitHandler}
             >
-              Generate
+              {loader? <CircularProgress /> : "Generate"}
             </Button>
           </Box>
           {shortUrl && <Box marginTop="10px">
